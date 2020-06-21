@@ -7,7 +7,10 @@ $mail->isSMTP();
 //$mail->SMTPDebug = 2;
 
 $postdata = file_get_contents("php://input");
+error_log(print_r($postdata,true));
+
 $request = json_decode($postdata);
+error_log(print_r($request,true));
 
 $mail->From = 'monksoftdev@gmail.com'; //remitente
 $mail->SMTPAuth = true;
