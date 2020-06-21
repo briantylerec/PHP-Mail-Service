@@ -9,7 +9,7 @@ $mail->isSMTP();
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 
-$mail->From = $request->from; //remitente
+$mail->From = 'monksoftdev@gmail.com'; //remitente
 $mail->SMTPAuth = true;
 $mail->SMTPSecure = 'tls'; //seguridad
 $mail->Host = "smtp.gmail.com"; // servidor smtp
