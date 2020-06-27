@@ -1,12 +1,16 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Headers: X-Requested-With');
+//header('Access-Control-Allow-Headers: X-Requested-With');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 
 $postdata = file_get_contents("php://input");
-$request = json_decode($postdata);
+$request = json_decode($postdata, true);
 $email = $request->email;
 $pass = $request->password;
+
+error_log(print_r('Informacion recibida: ',true));
+error_log(print_r($request,true));
+error_log(print_r('Fin informacion recibida: ',true));
 
 $name= $request->name;
 $email= $request->email;
