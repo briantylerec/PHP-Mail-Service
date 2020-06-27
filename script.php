@@ -11,7 +11,7 @@ $pass = $request->password;
 $name= $request->name;
 $email= $request->email;
 $company=$request->subject;
-$text=$request->msn;
+$text=$request->message;
 
 $send_to = "";
 $from = "";
