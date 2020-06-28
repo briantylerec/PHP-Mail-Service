@@ -23,9 +23,9 @@ $mail->Port = 587; //puerto
 $mail->Username = $request->mailOrigen; //nombre usuario
 $mail->Password = $request->pass; //contraseña
 //destinatario
-$mail->AddAddress($_POST[$request->email]);
-$mail->Subject = $_POST[$request->subject];
-$mail->Body = $_POST[$request->message];
+$mail->AddAddress($request->mailOrigen, $request->name);
+$mail->Subject = $request->subject;
+$mail->Body = $request->message;
 //Avisar si fue enviado o no y dirigir al index
 if ($mail->Send()) {
   echo json_encode(true);

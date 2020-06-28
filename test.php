@@ -1,6 +1,7 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 require "vendor/autoload.php";
+require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
 
 $mail = new PHPMailer;
 $mail->isSMTP();
@@ -14,9 +15,9 @@ $mail->Port = 587; //puerto
 $mail->Username = "monksoftdev@gmail.com"; //nombre usuario
 $mail->Password = "Gbienvenidos5!!@2022"; //contraseña
 //destinatario
-$mail->AddAddress($_POST['brian.moraa@ucuenca.edu.ec']);
-$mail->Subject = $_POST['prueba'];
-$mail->Body = $_POST['mensaje de brian'];
+$mail->AddAddress('monksoftdev@gmail.com', 'Brian Mora');
+$mail->Subject = 'mi asunto';
+$mail->Body = 'mi mensaje';
 //Avisar si fue enviado o no y dirigir al index
 if ($mail->Send()) {
   echo json_encode(true);
