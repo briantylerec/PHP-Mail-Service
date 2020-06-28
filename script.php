@@ -23,7 +23,7 @@ $mail->Port = 587; //puerto
 $mail->Username = $request->mailOrigen; //nombre usuario
 $mail->Password = $request->pass; //contraseña
 //destinatario
-$mail->AddAddress($request->mailOrigen, $request->name);
+$mail->AddAddress($request->email, $request->name);
 $mail->Subject = $request->subject;
 $mail->Body = $request->message;
 //Avisar si fue enviado o no y dirigir al index
