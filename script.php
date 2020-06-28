@@ -22,12 +22,11 @@ $mail->Port = 587; //puerto
 $mail->Username = $request->mailOrigen; //nombre usuario
 $mail->Password = $request->pass; //contraseña
 
-$mail->setFrom($request->email, $request->name);
+$mail->setFrom($request->mailOrigen, $request->name);
 $mail->AddAddress($request->mailOrigen);
-$mail->addReplyTo($request->email, 'Reenvío correo');
 
 $mail->Subject = $request->subject;
-$mail->Body = $request->message;
+$mail->Body = ($request->name + ' escribió: ' + $request->message);
 
 if ($mail->Send()) {
   echo json_encode(true);
