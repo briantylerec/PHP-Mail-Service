@@ -15,7 +15,7 @@ error_log(print_r($postdata,true));
 $request = json_decode($postdata);
 error_log(print_r($request,true));
 
-$mail->From = $request->mail; //remitente
+$mail->From = $request->email; //remitente
 $mail->SMTPAuth = true;
 $mail->SMTPSecure = 'tls'; //seguridad
 $mail->Host = "smtp.gmail.com"; // servidor smtp
