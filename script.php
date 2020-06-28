@@ -15,19 +15,20 @@ error_log(print_r($postdata,true));
 $request = json_decode($postdata);
 error_log(print_r($request,true));
 
-$mail->setFrom($request->email, $request->name); //remitente
 $mail->SMTPAuth = true;
 $mail->SMTPSecure = 'tls'; //seguridad
 $mail->Host = "smtp.gmail.com"; // servidor smtp
 $mail->Port = 587; //puerto
 $mail->Username = $request->mailOrigen; //nombre usuario
 $mail->Password = $request->pass; //contraseña
-//destinatario
+
+$mail->setFrom($request->email, $request->name);
 $mail->AddAddress($request->mailOrigen);
 $mail->addReplyTo($request->email, 'Reenvío correo');
+
 $mail->Subject = $request->subject;
 $mail->Body = $request->name + ' escribió: ' + $request->message;
-//Avisar si fue enviado o no y dirigir al index
+
 if ($mail->Send()) {
   echo json_encode(true);
 }
