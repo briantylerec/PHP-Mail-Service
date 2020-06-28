@@ -27,7 +27,7 @@ $mail->AddAddress($request->mailOrigen);
 $mail->addReplyTo($request->email, 'Reenvío correo');
 
 $mail->Subject = $request->subject;
-$mail->Body = $request->name + ' escribió: ' + $request->message;
+$mail->Body = $request->message;
 
 if ($mail->Send()) {
   echo json_encode(true);
