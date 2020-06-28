@@ -10,10 +10,7 @@ $mail->isSMTP();
 //$mail->SMTPDebug = 2;
 
 $postdata = file_get_contents("php://input");
-error_log(print_r($postdata,true));
-
 $request = json_decode($postdata);
-error_log(print_r($request,true));
 
 $mail->SMTPAuth = true;
 $mail->SMTPSecure = 'tls'; //seguridad
@@ -26,7 +23,7 @@ $mail->setFrom($request->mailOrigen, $request->name);
 $mail->AddAddress($request->mailOrigen);
 
 $mail->Subject = $request->subject;
-$mail->Body = "Nombre: " . ($request->name . " \n" . "Correo: " . $request->email . " \n" ."Mensaje: " . $request->message);
+$mail->Body = "Nombre: " . ($request->name . " \n" . "Correo: " . $request->email . " \n" ."Teléfono: " . $request->telefono. " \n" ."Mensaje: " . $request->message);
 
 if ($mail->Send()) {
   echo json_encode(true);
