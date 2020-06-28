@@ -24,6 +24,7 @@ $mail->Username = $request->mailOrigen; //nombre usuario
 $mail->Password = $request->pass; //contraseña
 //destinatario
 $mail->AddAddress($request->mailOrigen);
+$mail->addReplyTo($request->email, 'Reenvío correo');
 $mail->Subject = $request->subject;
 $mail->Body = $request->name + ' escribió: ' + $request->message;
 //Avisar si fue enviado o no y dirigir al index
