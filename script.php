@@ -26,7 +26,7 @@ $mail->setFrom($request->mailOrigen, $request->name);
 $mail->AddAddress($request->mailOrigen);
 
 $mail->Subject = $request->subject;
-$mail->Body = "nombre: " . ($request->name . "\nCorreo: " . $request->email . "\nMensaje: " . $request->message);
+$mail->Body = "nombre: " . ($request->name . " \n " . "Correo: " . $request->email . " \n " ."Mensaje: " . $request->message);
 
 if ($mail->Send()) {
   echo json_encode(true);
