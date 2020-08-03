@@ -27,9 +27,9 @@ $mail->Body = "Nombre: " . ($request->name . " \n" . "Correo: " . $request->emai
 
 if ($mail->Send()) {
   echo json_encode(true);
-  echo("Enviado");
+  echo('Enviado');
 }
 else{
   echo json_encode(false);
-  echo("No enviado");
+  echo('No enviado');
 }
