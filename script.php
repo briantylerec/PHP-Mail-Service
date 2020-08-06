@@ -9,25 +9,33 @@ $mail = new PHPMailer;
 $mail->isSMTP();
 //$mail->SMTPDebug = 2;
 
-$postdata = file_get_contents("php://input");
-$request = json_decode($postdata);
+$request = json_decode(file_get_contents("php://input"),true);
 
-$mail->SMTPAuth = true;
-$mail->SMTPSecure = 'tls'; //seguridad
-$mail->Host = "smtp.gmail.com"; // servidor smtp
-$mail->Port = 587; //puerto
-$mail->Username = $request->mailOrigen; //nombre usuario
-$mail->Password = $request->pass; //contraseña
+if(!empty($request)){
 
-$mail->setFrom($request->mailOrigen, $request->name);
-$mail->AddAddress($request->mailOrigen);
+  $mail->SMTPAuth = true;
+  $mail->SMTPSecure = 'tls'; //seguridad
+  $mail->Host = "smtp.gmail.com"; // servidor smtp
+  $mail->Port = 587; //puerto
+  $mail->Username = $request->mailOrigen; //nombre usuario
+  $mail->Password = $request->pass; //contraseña
+  error_log(print_r($request->mailOrigen,true));
 
-$mail->Subject = $request->subject;
-$mail->Body = "Nombre: " . ($request->name . " \n" . "Correo: " . $request->email . " \n" ."Teléfono: " . $request->telefono. " \n" ."Mensaje: " . $request->message);
+  $mail->setFrom($request->mailOrigen, $request->name);
+  $mail->AddAddress($request->mailOrigen);
 
-if ($mail->Send()) {
-  echo json_encode(true);
-}
-else{
-  echo json_encode(false);
+  $mail->Subject = $request->subject;
+  $mail->Body = "Nombre: " . ($request->name . " \n" . "Correo: " . $request->email . " \n" ."Teléfono: " . $request->telefono. " \n" ."Mensaje: " . $request->message);
+
+  if ($mail->Send()) {
+    echo json_encode(true);
+    error_log(print_r("Mail enviado",true));
+  }
+  else{
+    echo json_encode(false);
+    error_log(print_r("Mail no enviado",true));
+  }
+  error_log(print_r("Con datos",true));
+}else{
+  error_log(print_r("No datos",true));
 }
