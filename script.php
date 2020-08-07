@@ -9,7 +9,7 @@ $mail = new PHPMailer;
 $mail->isSMTP();
 //$mail->SMTPDebug = 2;
 
-$request = json_decode(file_get_contents("php://input"),true);
+$request = json_decode(file_get_contents("php://input"));
 
 if(!empty($request)){
 
