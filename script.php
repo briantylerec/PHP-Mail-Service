@@ -11,7 +11,7 @@ $mail->isSMTP();
 
 $request = json_decode(file_get_contents("php://input"));
 
-if(!empty($request)){
+if(!empty($request) && $request->name!='' && $request->email!='' && $request->telefono!='' && $request->message!='' && $request->subject!=''){
 
   $mail->SMTPAuth = true;
   $mail->SMTPSecure = 'tls'; //seguridad
@@ -19,7 +19,7 @@ if(!empty($request)){
   $mail->Port = 587; //puerto
   $mail->Username = $request->mailOrigen; //nombre usuario
   $mail->Password = $request->pass; //contraseña
-  error_log(print_r($request->mailOrigen,true));
+  //error_log(print_r($request->mailOrigen,true));
 
   $mail->setFrom($request->mailOrigen, $request->name);
   $mail->AddAddress($request->mailOrigen);
@@ -28,14 +28,11 @@ if(!empty($request)){
   $mail->Body = "Nombre: " . ($request->name . " \n" . "Correo: " . $request->email . " \n" ."Teléfono: " . $request->telefono. " \n" ."Mensaje: " . $request->message);
 
   if ($mail->Send()) {
-    echo json_encode(true);
-    error_log(print_r("Mail enviado",true));
+    echo json_encode('Mensaje enviado correctamente');
   }
   else{
-    echo json_encode(false);
-    error_log(print_r("Mail no enviado",true));
+    echo json_encode('Mensaje no enviado, revise los campos.');
   }
-  error_log(print_r("Con datos",true));
 }else{
-  error_log(print_r("No datos",true));
+  echo json_encode('Mensaje no enviado, revise los campos.');
 } 
