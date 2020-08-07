@@ -27,6 +27,8 @@ if(!empty($request) && $request->name!='' && $request->email!='' && $request->te
   $mail->Subject = $request->subject;
   $mail->Body = "Nombre: " . ($request->name . " \n" . "Correo: " . $request->email . " \n" ."Teléfono: " . $request->telefono. " \n" ."Mensaje: " . $request->message);
 
+  error_log(print_r($mail->Send(),true));
+
   if ($mail->Send()) {
     echo json_encode('Mensaje enviado correctamente');
   }
